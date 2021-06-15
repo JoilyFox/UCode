@@ -36,7 +36,7 @@
 
             <div class="columns">
                 <nav class="column borderRadius whiteBg shadow mainNav">
-                    <a class="active" href="/">Asked</a>
+                    <a class="active" href="/private/asked">Asked</a>
                     <a href="#">Liked</a>
                 </nav>
 

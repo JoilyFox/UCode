@@ -41,6 +41,20 @@ class ForumController extends Controller
         ]);
     }
 
+    public function editPost($slug_category, $slug_post) {
+        $post = Post::where('slug', $slug_post)->first();
+        $category = Category::where('id', $post->category_id)->first();
+
+        if ($post->user_id == Auth::user()->id) {
+            return view('pages.edit-post', [
+                'post' => $post,
+                'category' => $category
+            ]);
+        } else {
+            return redirect()->away('/');
+        }
+    }
+
     public function getPostsByAuthUser() {
         $user_id = Auth::user()->id;
         $posts = Post::where('user_id', $user_id)->get();
@@ -48,6 +62,13 @@ class ForumController extends Controller
         return view('pages.private', [
             'posts' => $posts,
         ]);
+    }
+
+
+    public function like(Request $request) {
+        $formFields = $request->only(['like', 'dislike']);
+
+
     }
 
 

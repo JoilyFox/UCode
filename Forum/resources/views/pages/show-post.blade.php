@@ -25,9 +25,22 @@
 
                 <div class="post borderRadius whiteBg shadow">
                     <div class="title">
-                        <h2>
-                            {{$post->title}}
-                        </h2>
+                        <div class="titleRow">
+                            <h2>
+                                {{$post->title}}
+                            </h2>
+
+                            @if ($post->user_id == Auth::user()->id)
+                                <div class="editBtns">
+                                    <a href="{{route('editPost', [$post->category['slug'], $post->slug])}}"
+                                        title='Edit post'>
+                                        <img src="{{ asset('assets/images/edit-button.svg') }}" alt="Edit post" >
+                                    </a>
+                                    <a class="close" href="#" title='Delete post'><img src="{{ asset('assets/images/close.svg') }}" alt="Edit post" ></a>
+                                </div>
+                            @endif
+
+                        </div>
                         <div class="dateInfo">
                             <span class="created">Asked <span>
 
@@ -47,9 +60,13 @@
 
                     <div class="description">
                         <div class="likes">
-                            <a href="#" class="likeBtn up"><img src="{{ asset('assets/images/triangle.svg') }}" alt="btn"></a>
-                            <span class="likeCounter">{{$post->likes}}</span>
-                            <a href="#" class="likeBtn down"><img src="{{ asset('assets/images/triangle.svg') }}" alt="btn"></a>
+                            <form action="" method="POST">
+                                <button value="1" name="like"
+                                class="likeBtn up"><img src="{{ asset('assets/images/triangle.svg') }}" alt="btn"></button>
+                                <span class="likeCounter">{{$post->likes}}</span>
+                                <button value="0" name="dislike"
+                                class="likeBtn down"><img src="{{ asset('assets/images/triangle.svg') }}" alt="btn"></button>
+                            </form>
                         </div>
                         <div class="decriptionAndCategories">
                             <p>

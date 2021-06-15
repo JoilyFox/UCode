@@ -19,6 +19,12 @@ Route::get('/', [ForumController::class, 'index'])->name('index');
 Route::get('/category/{slug}', [ForumController::class, 'getPostsByCategory'])->name('getPostsByCategory');
 Route::get('/category/{slug_category}/{slug_post}', [ForumController::class, 'getPost'])->name('getPost');
 
+Route::get('/category/{slug_category}/{slug_post}/edit', [ForumController::class, 'editPost'])->name('editPost');
+
+Route::post('/edit', [\App\Http\Controllers\UpdateQuestionController::class, 'updatePost'])->name('updatePost');
+
+// Route::post('???', [ForumController::class, 'like'])->name('like');
+
 Route::name('user.')->group(function() {
     Route::get('/private/asked', [ForumController::class, 'getPostsByAuthUser'])->middleware('auth')->name('private');
     Route::get('/private', function() {

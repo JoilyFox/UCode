@@ -18,4 +18,12 @@ class Post extends Model
     {
         return $this->belongsTo(user::class);
     }
+
+    protected $fillable = [
+        'title',
+        'category_id',
+        'description',
+        'slug',
+        'updated_at'
+    ];
 }

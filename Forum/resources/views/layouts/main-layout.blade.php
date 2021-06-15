@@ -35,23 +35,39 @@
                     <input type="search" class="mainSearch whiteBg_08 bluredBg" placeholder="Search by name">
                 </div>
 
-                @guest
                 <div class="btns">
-                    <a class="btn" href="/login">Login</a>
-                    <a class="btn" href="/registration">Register</a>
-                </div>
-                @endguest
+                    @guest
 
-                @auth
-                <div class="profileBtn">
-                    <a href="/private">Profile</a>
+                        <a class="btn" href="/login">Login</a>
+                        <a class="btn" href="/registration">Register</a>
+
+                    @endguest
+
+                    @auth
+                    <div class="profilePopUp" id="profilePopUp">
+
+                        <div class="popUpBtn" onclick="showPopUp()">
+                            <span>Profile</span>
+                            <div class="avatar">
+                                <img src="{{ asset('assets/images/default.png') }}" alt="Avatar">
+                            </div>
+                        </div>
+
+
+                        <div id="headerPopUp" class="popUpMenu borderRadius whiteBg shadow">
+                            <a href="/private">Your Profile</a>
+                            <a href="/ask-question">Ask a Question</a>
+                            <div class="border"></div>
+                            <a class="signOut" href="/logout">Sign Out</a>
+                        </div>
+                    </div>
+                    @endauth
                 </div>
-                @endauth
 
             </div>
         </header>
 
-        <main>
+        <main onclick="hide()">
             @yield('content')
         </main>
 
@@ -62,7 +78,9 @@
 
 
 
+        <script src="{{ URL::asset('js/script.js') }}">
 
+        </script>
 
     </body>
 
